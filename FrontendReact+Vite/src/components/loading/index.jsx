@@ -2,7 +2,7 @@
 export const Loading = ({
     // eslint-disable-next-line react/prop-types
     isLoading,
-    className = 'min-vh-100 d-flex',
+    className = 'min-vh-50 d-flex',
     classNameText = 'text-black',
   }) => {
     if (!isLoading) return null;

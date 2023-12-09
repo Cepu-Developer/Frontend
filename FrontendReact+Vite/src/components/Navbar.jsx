@@ -60,7 +60,7 @@ const NavbarComponent = () => {
     <div>
       <Navbar
         expand="lg"
-        className={changeColor ? 'color-active' : ''}
+        className={changeColor ? 'color-active fixed-top' : ''}
         style={{ backgroundColor: 'white', borderBottom: '2px solid #e0e0e0' }}
       >
         <Container>

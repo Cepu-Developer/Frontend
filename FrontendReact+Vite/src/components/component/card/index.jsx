@@ -46,8 +46,8 @@ export function CardUdara({ pollutan }) {
   const qualityAirData = getQualityAir();
 
   return (
-    <div className="container mt-3 mx-auto w-5">
-  <div className="card shadow border border-gray-200 rounded-lg w-150 bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10">
+    <div className="container mt-3  d-flex justify-content-center w-100">
+  <div className="card shadow border border-gray-200 rounded-lg w-100 bg-gray">
     <div
       className={`card-body ${
         isGoodAir(dataAqius)
@@ -62,7 +62,7 @@ export function CardUdara({ pollutan }) {
       }`}
     >
       <img
-        className="rounded-top-lg mx-auto w-100 pt-1"
+        className="rounded-top-lg mx-auto w-75 pt-1"
         src={qualityAirData.image}
         alt={qualityAirData.title}
       />
