@@ -6,84 +6,61 @@ const developers = [
     name: 'Aria Putra Pratama',
     role: 'Front-end Developer',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies libero et tellus fermentum, vel volutpat orci lacinia.',
-    image:''
+    image: '',
+    linkedin: 'https://id.linkedin.com/in/aria-putra-pratama-209482283',
+    github: 'https://github.com/ARIA260702'
   },
   {
     name: 'Gilang Riyanto',
     role: 'Front-end Developer',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies libero et tellus fermentum, vel volutpat orci lacinia.',
-    image:''
+    image: '',
+    linkedin: 'https://www.linkedin.com/in/gilangriyanto/',
+    github: 'https://github.com/gilangriyanto'
   },
   {
     name: 'Muhammad Ariansyah',
     role: 'Back-end Developer',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies libero et tellus fermentum, vel volutpat orci lacinia.',
-    image:''
+    image: '',
+    linkedin: 'https://www.linkedin.com/in/m-ariansyah',
+    github: 'https://github.com/AriiAnn'
   },
   {
-    name: 'Dinda Rosalin',
+    name: 'Dinda Rosalin Husna',
     role: 'UI/UX Designer',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies libero et tellus fermentum, vel volutpat orci lacinia.',
-    image:''
+    image: '',
+    linkedin: 'http://www.linkedin.com/in/dindarosalin',
+    github: 'https://github.com/dindarosalin'
   },
   {
     name: 'Dwi Wahyu Riani',
     role: 'Project Manager',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies libero et tellus fermentum, vel volutpat orci lacinia.',
-    image:''
+    image: '',
+    linkedin: '',
+    github: ''
   },
 ];
 
-const containerStyle = {
-  background: '#fcfafa',
-  minHeight: '100vh',
-};
-
-const contentContainerStyle = {
-  padding: '20px',
-};
-
-const headingStyle = {
-  color: '#333',
-};
-
-const cardContainerStyle = {
-  display: 'flex',
-  flexWrap: 'wrap',
-  gap: '20px',
-};
-
-const cardStyle = {
-  background: '#fff',
-  border: '1px solid #ddd',
-  borderRadius: '8px',
-  padding: '20px',
-  width: '100%', // Mengubah lebar menjadi 100%
-  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-};
-
-const cardHeadingStyle = {
-  color: '#333',
-  marginBottom: '10px',
-};
-
-const cardTextStyle = {
-  color: '#666',
-  marginBottom: '0',
-};
-
 function TentangKami() {
   return (
-    <div style={containerStyle}>
+    <div>
       <NavbarComponent />
-      <div style={contentContainerStyle}>
-        <h1 style={headingStyle}>Tentang Kami</h1>
-        <div style={cardContainerStyle}>
+      <div className="container">
+        <h3 className="text-center m-2">Tentang Kami</h3>
+        <div>
           {developers.map((developer, index) => (
-            <div key={index} style={cardStyle}>
-              <h3 style={cardHeadingStyle}>{developer.name}</h3>
-              <p style={cardTextStyle}>{developer.role}</p>
-              <p style={cardTextStyle}>{developer.description}</p>
+            <div key={index} className="card mb-3 row">
+              <div className="card-body">
+                <img src={developer.image} alt="Foto Developer" />
+                <h5 className="card-title">{developer.name}</h5>
+                <p className="card-subtitle mb-2 text-body-secondary">{developer.role}</p>
+                <p className="card-text">{developer.description}</p>
+                <a href={developer.linkedin} className="card-link" target="_blank" rel="noopener noreferrer">Linkedin</a>
+                <a href={developer.github} className="card-link" target="_blank" rel="noopener noreferrer">Github</a>
+              </div>
             </div>
           ))}
         </div>
