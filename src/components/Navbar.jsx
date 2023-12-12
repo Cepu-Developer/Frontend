@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import React, { useState, useEffect, useCallback } from "react";
@@ -22,26 +23,44 @@ const NavbarComponent = () => {
 
   const changeBackgroundColor = useCallback(() => {
     setChangeColor(window.scrollY > 10);
-  }, []); 
+  }, []);
 
-  const refreshToken = useCallback(async () => {
+  const refreshToken = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/token");
-      const { accessToken } = response.data;
-      setToken(accessToken);
-      const decoded = jwt_decode(accessToken);
-      setName(decoded.name);
-      setExpire(decoded.exp);
+      const storedToken = localStorage.getItem("token");
+
+      if (storedToken) {
+        const headers = {
+          Authorization: `Bearer ${storedToken}`,
+        };
+
+        const response = await axios.get("http://localhost:5000/token", { headers });
+
+        // Proses respons dan set state seperti yang Anda lakukan sebelumnya
+        setToken(response.data.accessToken);
+        const decoded = jwt_decode(response.data.accessToken);
+        console.log(decoded);
+        const { name } = decoded;
+        setName(name);
+        setExpire(decoded.exp);
+      }
     } catch (error) {
+      console.log(error); // Tambahkan ini untuk melihat detail kesalahan
       if (error.response) {
         navigate("/");
       }
     }
-  }, [navigate]);
+  };
 
   useEffect(() => {
-    refreshToken();
+    const storedToken = localStorage.getItem("token");
+
+    if (storedToken) {
+      refreshToken();
+    }
+
     window.addEventListener("scroll", changeBackgroundColor);
+
     return () => {
       window.removeEventListener("scroll", changeBackgroundColor);
     };
@@ -50,53 +69,14 @@ const NavbarComponent = () => {
   const logout = async () => {
     try {
       await axios.delete("http://localhost:5000/logout");
+      localStorage.removeItem("token"); // Hapus token dari local storage
+      setToken("");
+      setName(""); // Atur state nama pengguna menjadi kosong
       navigate("/");
     } catch (error) {
       console.error("Error logging out:", error);
     }
   };
-  const Auth = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post("http://localhost:5000/login", {
-        email: email,
-        password: password,
-      });
-      navigate("/");
-    } catch (error) {
-      if (error.response) {
-        setMsg(error.response.data.msg);
-      }
-    }
-  };
-
-  const axiosJWT = axios.create();
-
-  axiosJWT.interceptors.request.use(
-    async (config) => {
-      const currentDate = new Date();
-      if (expire * 1000 < currentDate.getTime()) {
-        try {
-          const response = await axios.get("http://localhost:5000/token");
-          const { accessToken } = response.data;
-          config.headers.Authorization = `Bearer ${accessToken}`;
-          setToken(accessToken);
-          const decoded = jwt_decode(accessToken);
-          setName(decoded.name);
-          setExpire(decoded.exp);
-        } catch (error) {
-          console.error("Error refreshing token:", error);
-          if (error.response && error.response.status === 401) {
-            navigate("/");
-          }
-        }
-      }
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
 
   const [showLoginModal, setShowLoginModal] = useState(false);
 
@@ -108,17 +88,13 @@ const NavbarComponent = () => {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:5000/login", {
-        email,
-        password,
+        email: email,
+        password: password,
       });
-      setToken(response.data.accessToken);
-      const decoded = jwt_decode(response.data.accessToken);
-      setName(decoded.name);
-      setExpire(decoded.exp);
+      localStorage.setItem("token", response.data.accessToken);
+      refreshToken();
       setShowLoginModal(false);
-      navigate("/");
     } catch (error) {
-      console.error("Error logging in:", error);
       if (error.response) {
         setMsg(error.response.data.msg);
       }
@@ -144,24 +120,23 @@ const NavbarComponent = () => {
               ))}
             </Nav>
             <div className="d-flex gap-2 text-center">
-          {/* Hide/show logout based on user authentication */}
-          {token ? (
-            <button onClick={logout} className="button is-light">
-              Log Out
-            </button>
-          ) : (
-            <React.Fragment>
-              <button className="btn btn-success" onClick={handleLoginClick}>
-                Masuk
-              </button>
-              <Link to="/Register" className="btn btn-outline-success">
-                Daftar
-              </Link>
-            </React.Fragment>
-          )}
-          {/* Show user name when logged in */}
-          {token && <p>Hi {name}</p>}
-        </div>
+              {token ? (
+                <button onClick={logout} className="button is-light">
+                  Log Out
+                </button>
+              ) : (
+                <React.Fragment>
+                  <button className="btn btn-success" onClick={handleLoginClick}>
+                    Masuk
+                  </button>
+                  <Link to="/Register" className="btn btn-outline-success">
+                    Daftar
+                  </Link>
+                </React.Fragment>
+              )}
+              {token && <p>Hi {name}</p>}
+            </div>
+            <p>Hi {name}</p>
           </Navbar.Collapse>
         </Container>
       </Navbar>
@@ -169,15 +144,13 @@ const NavbarComponent = () => {
       <Modal show={showLoginModal} onHide={() => setShowLoginModal(false)} centered size="lg">
         <Modal.Body>
           <div className="login-container" style={{ padding: "40px", display: "flex", flexDirection: "column" }}>
-            {" "}
-            {/* Tambahkan padding ke login-container */}
             <div className="px-5">
               <div className="text-center">
                 <img src="./src/assets/img/Logo/logo-text-green.png" alt="Logo" height="80" />
                 <h2 className="py-2">Selamat Datang</h2>
               </div>
 
-              <form onSubmit={Auth} method="" action="">
+              <form onSubmit={handleLogin} method="" action="">
                 <p className="has-text-centered">{msg}</p>
                 <div className="mb-3">
                   <div className="input-group">
@@ -233,9 +206,9 @@ const NavbarComponent = () => {
 
               <p className="mt-3 text-center">
                 Tidak punya akun?{" "}
-                <a className="text-success text-decoration-none fw-bold" href="/Register">
+                <Link className="text-success text-decoration-none fw-bold" to="/Register">
                   Daftar
-                </a>
+                </Link>
               </p>
             </div>
           </div>
