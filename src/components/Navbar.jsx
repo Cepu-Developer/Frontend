@@ -5,7 +5,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Navbar, Container, Nav, Modal } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
 import { navLinks } from "../data/index";
-import * as jwt_decode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -38,7 +38,7 @@ const NavbarComponent = () => {
 
         // Proses respons dan set state seperti yang Anda lakukan sebelumnya
         setToken(response.data.accessToken);
-        const decoded = jwt_decode(response.data.accessToken);
+        const decoded = jwtDecode(response.data.accessToken);
         console.log(decoded);
         const { name } = decoded;
         setName(name);
@@ -136,7 +136,6 @@ const NavbarComponent = () => {
               )}
               {token && <p>Hi {name}</p>}
             </div>
-            <p>Hi {name}</p>
           </Navbar.Collapse>
         </Container>
       </Navbar>
