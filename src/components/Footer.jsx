@@ -6,7 +6,7 @@ const Footer = () => {
       <Row className="container">
         <div className="col-lg-8 col-12">
           <Row className="text-center text-lg-start">
-            <div className="col-lg-4 col-12">
+            <div className="col-lg-4">
               <img className="img-fluid" src="./src/assets/img/Logo/logo-text-putih.png" alt="Logo"/>
             </div>
             <div className="col-lg-8 col-12 my-auto py-3 d-none d-lg-block" style={{ borderLeft: '1px white solid' }}>&copy; 2023 Udarakita. Hak Cipta dilindungi undang-undang</div>

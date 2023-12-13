@@ -7,10 +7,10 @@ function Diskusi() {
   return (
     <div style={{ background: "#fcfafa", minHeight: "100vh" }}>
       <NavbarComponent />
-      <div className="min-vh-100">
+      <div className="container">
         {/* You can include multiple instances of CardDiskusi here */}
-        <div className="my-5 justify-content-center">
-          <h3 className="text-center fw-bold">Diskusi Populer</h3>
+        <div className="mt-2 justify-content-center">
+        <h4 className="text-center">Diskusi <strong>Populer</strong></h4>
           <p className="text-center">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
           </p>
