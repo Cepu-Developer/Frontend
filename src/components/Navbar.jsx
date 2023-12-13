@@ -121,8 +121,8 @@ const NavbarComponent = () => {
             </Nav>
             <div className="d-flex gap-2 text-center">
               {token ? (
-                <button onClick={logout} className="button is-light">
-                  Log Out
+                <button onClick={logout} className="btn btn-success">
+                  Hi {name} <i className="fa-solid fa-arrow-right-from-bracket"></i>
                 </button>
               ) : (
                 <React.Fragment>
@@ -134,7 +134,7 @@ const NavbarComponent = () => {
                   </Link>
                 </React.Fragment>
               )}
-              {token && <p>Hi {name}</p>}
+              {token}
             </div>
           </Navbar.Collapse>
         </Container>

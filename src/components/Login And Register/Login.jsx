@@ -16,11 +16,13 @@ const Login = ({ setLoginData, handleLogin }) => {
   const Auth = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/login", {
+      const response = await axios.post("http://localhost:5000/login", {
         email: email,
         password: password,
       });
       navigate("/");
+      localStorage.setItem("token", response.data.accessToken); // Simpan token di local storage
+      setLoginData(response.data.accessToken); // Set state token jika diperlukan di komponen login
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);
