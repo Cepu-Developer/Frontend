@@ -29,7 +29,7 @@ const HomePage = () => {
                   <div className="position-relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] translate-x-50 start-50 rotate-[30deg] bg-gradient opacity-30 sm:left-[calc(50%-30rem)]"></div>
                 </div>
                 <div className="container mx-auto py-5 py-md-5 py-lg-[100px] text-black">
-                  <Row className={`justify-content-center align-items-center mb-5 mt-5 ${isClicked ? 'text-left' : 'text-center'}`}>
+                  <Row className={`justify-content-center align-items-center mb-5 mt-2 ${isClicked ? 'text-left' : 'text-center'}`}>
                     <Col className="mb-3 mt-5">
                       {!isClicked ? (
                         <div className="mb-5">
@@ -52,10 +52,10 @@ const HomePage = () => {
                       ) : (
                         <Col className=" text-left d-flex justify-content-left text-align-left ">
                            <div className="text-left">
-                          <h1 className="display-40 fw-bold">
+                          <h1 className="display-40 fw-bold fs-2">
                           Hasil Cek Kualitas Udara di Lokasi Anda
                           </h1>
-                          <p className="mt-4 lead text-left d-flex justify-content-left ">
+                          <p className="mt-4 lead text-left d-flex justify-content-left fs-5">
                           Terima kasih telah menggunakan layanan kami untuk memantau kualitas udara di sekitar Anda. Berikut adalah hasil terkini untuk lokasi Anda. 
                           Kami memberikan informasi yang jelas dan mudah dipahami tentang tingkat polusi udara, suhu, dan faktor-faktor lainnya yang memengaruhi lingkungan Anda. 
                           Dengan pemahaman ini, Anda dapat mengambil langkah-langkah tepat untuk menjaga kesehatan dan kenyamanan Anda. Tetap terinformasi, tetap sehat!
