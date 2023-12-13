@@ -9,7 +9,8 @@ const developers = [
     description: 'Mahasiswa Sistem Informasi Universitas Malikussaleh',
     image: 'public/profile/aria.jpeg',
     linkedin: 'https://id.linkedin.com/in/aria-putra-pratama-209482283',
-    github: 'https://github.com/ARIA260702'
+    github: 'https://github.com/ARIA260702',
+    email: 'https://wa.me/6282283135932'
   },
   {
     name: 'Gilang Riyanto',
@@ -17,7 +18,8 @@ const developers = [
     description: 'Mahasiswa Teknik Informatika Institut Teknologi Telkom Purwokerto',
     image: 'public/profile/gilang.jpeg',
     linkedin: 'https://www.linkedin.com/in/gilangriyanto/',
-    github: 'https://github.com/gilangriyanto'
+    github: 'https://github.com/gilangriyanto',
+    email: 'https://wa.me/6281336353371'
   },
   {
     name: 'Muhammad Ariansyah',
@@ -25,7 +27,8 @@ const developers = [
     description: 'Mahasiswa Sistem Informasi Universitas Malikussaleh',
     image: 'public/profile/ari.jpeg',
     linkedin: 'https://www.linkedin.com/in/m-ariansyah',
-    github: 'https://github.com/AriiAnn'
+    github: 'https://github.com/AriiAnn',
+    email: 'https://wa.me/6285156820186'
   },
   {
     name: 'Dinda Rosalin Husna',
@@ -33,7 +36,8 @@ const developers = [
     description: 'Mahasiswa Teknologi Rekayasa Perangkat Lunak Politeknik Negeri Banyuwangi',
     image: 'public/profile/dinda.jpg',
     linkedin: 'http://www.linkedin.com/in/dindarosalin',
-    github: 'https://github.com/dindarosalin'
+    github: 'https://github.com/dindarosalin',
+    email: 'dindarosalin24@gmail.com'
   },
   {
     name: 'Dwi Wahyu Riani',
@@ -41,7 +45,8 @@ const developers = [
     description: 'Mahasiswa Sistem Telekomunikasi Universitas Pendidikan Indonesia',
     image: 'public/profile/riani.JPG',
     linkedin: 'http://www.linkedin.com/in/yannriani',
-    github: 'https://github.com/yannriani'
+    github: 'https://github.com/yannriani',
+    email: 'https://wa.me/6288802984592'
   },
 ];
 
@@ -85,7 +90,7 @@ function TentangKami() {
                         <a href={developer.github} className="card-link" target="_blank" rel="noopener noreferrer">
                           <i className="fa-brands fa-github fa-l"></i>
                         </a>
-                        <a href={developer.linkedin} className="card-link" target="_blank" rel="noopener noreferrer">
+                        <a href={developer.email} className="card-link" target="_blank" rel="noopener noreferrer">
                           <i className="fa-regular fa-envelope fa-l"></i>
                         </a>
                       </section>
