@@ -14,11 +14,9 @@ function MyRouter() {
     <div style={{
       background: '#fcfafa', minHeight: '100vh'
     }}>
-
       <Routes>
         <Route path="*" element={<NotFound />} />
         <Route path="/" element={<HomePage />} />
-        <Route path="/diskusi" element={<Diskusi />} />
         <Route path="register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/layananKesehatan" element={<Layanan />} />

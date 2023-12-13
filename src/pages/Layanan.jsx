@@ -7,29 +7,20 @@ function Layanan() {
       background: '#fcfafa', minHeight: '100vh'
     }}>
       <NavbarComponent />
-      <div className="container-md min-vh-100">
+      <div className="container">
         <img className="rounded mx-auto d-block m-4" src="./icons/icons8-padlock-1041.svg" alt="" />
-        <div className="text-center rounded mx-auto d-block"
-          style={{
-            width: '32rem'
-          }}>
+        <div className="text-center rounded mx-auto d-block col-md-6">
           <div className="card-body"></div>
           <h5>Ups Kamu belum diajak!</h5>
           <p>Jangan malu buat hubungi kami untuk mendapatkan akun premium dan jelajahi semua fitur sesuka hati bebas iklan</p>
         </div>
-        <div className="card rounded mx-auto d-block"
-        style={{
-          width: '32rem'
-        }}>
+        <div className="card rounded mx-auto d-block col-md-6">
           <div className="card-body text-center">
             <h6>Layanan Kesehatan</h6>
             <p>Fitur ini memungkinkan kamu untuk terhubung dengan fasilitas kesehatan terpercaya untuk membantu kamu menyelesaikan masalah kesehatan</p>
           </div>
         </div>
-        <div className="card rounded mx-auto d-block mt-4"
-          style={{
-            width: '32rem'
-          }}>
+        <div className="card rounded mx-auto d-block mt-4 col-md-6">
           <div className="card-body">
             <h6>Benefit Langganan</h6>
             <ol className="list-group mb-2">

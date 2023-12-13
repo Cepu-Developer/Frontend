@@ -10,9 +10,9 @@ function Diskusi() {
       <div className="container">
         {/* You can include multiple instances of CardDiskusi here */}
         <div className="mt-2 justify-content-center">
-        <h4 className="text-center">Diskusi <strong>Populer</strong></h4>
+          <h4 className="text-center">Diskusi <strong>Populer</strong></h4>
           <p className="text-center">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Halaman Ini Sedang Dalam Perbaikan
           </p>
           <Row>
             {/* Kartu Diskusi */}
@@ -28,26 +28,26 @@ function Diskusi() {
                 </Card.Body>
               </Card>
             </div>
-
             {/* Form untuk Posting */}
             <div className="col-lg-4 col-12">
               <Card className="border-0">
-                <Card.Body className=" w-75">
-                  <Form>
-                    <Form.Group
-                      className="mb-3"
-                      controlId="exampleForm.ControlTextarea1"
-                    >
-                      <Form.Label className="d-flex justify-content-center">Buat Diskusi Baru</Form.Label>
-                      <Form.Control
-                        as="textarea"
-                        rows={5}
-                        placeholder="Buat Postingan"
-                      />
+                <Card.Body >
+                  <Form> 
+                    <Form.Group className="mb-2" controlId="exampleForm.ControlTextarea1">
+                      <Form.Label className="mb-3">Buat Diskusi Baru</Form.Label>
+                      <div className="d-flex">
+                        <Form.Control
+                          as="textarea"
+                          rows={5}
+                          placeholder="Buat Postingan"
+                          className="flex-grow-1 me-3"
+                          style={{ resize: "none", width: "100%"}}
+                        />
+                      </div>
+                      <Button className="btn btn-success text-white fw-bold align-self-end mt-2">
+                        Posting
+                      </Button>
                     </Form.Group>
-                    <Button className="btn btn-success text-white fw-bold w-100">
-                      Posting
-                    </Button>
                   </Form>
                 </Card.Body>
               </Card>
