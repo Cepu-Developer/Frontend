@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 
 const isGoodAir = (data) => {
@@ -46,10 +47,10 @@ export function CardUdara({ pollutan }) {
   const qualityAirData = getQualityAir();
 
   return (
-    <div className="container mt-3  d-flex justify-content-center w-100">
+    <div className="container d-flex justify-content-center w-75">
   <div className="card shadow border border-gray-200 rounded-lg w-100 bg-gray">
     <div
-      className={`card-body ${
+      className={`card-body w-100 ${
         isGoodAir(dataAqius)
           ? "bg-success"
           : isModerateAir(dataAqius)
@@ -62,14 +63,14 @@ export function CardUdara({ pollutan }) {
       }`}
     >
       <img
-        className="rounded-top-lg mx-auto w-75 pt-1"
+        className="rounded-top-lg mx-auto w-25 pt-1"
         src={qualityAirData.image}
         alt={qualityAirData.title}
       />
       <h2 className="text-24 text-white tracking-tight">{dataAqius}</h2>
       <p className="pb-1 text-white tracking-tight">US AQI</p>
     </div>
-    <div className="pb-2 px-2">
+    <div className="pb-2 px-2 w-100">
       <h6
         className={`font-bold text-xl tracking-tight mb-1 ${
           isGoodAir(dataAqius)
