@@ -5,17 +5,13 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Navbar, Container, Nav, Modal } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
 import { navLinks } from "../data/index";
-import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
-// import Login from './Login And Register/Login';
 
 const NavbarComponent = () => {
   const [changeColor, setChangeColor] = useState(false);
   const [name, setName] = useState("");
   const [token, setToken] = useState("");
-  const [expire, setExpire] = useState("");
   const [msg, setMsg] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,60 +21,40 @@ const NavbarComponent = () => {
     setChangeColor(window.scrollY > 10);
   }, []);
 
-  const refreshToken = async () => {
-    try {
-      const storedToken = localStorage.getItem("token");
-
-      if (storedToken) {
-        const headers = {
-          Authorization: `Bearer ${storedToken}`,
-        };
-
-        const response = await axios.get("http://localhost:5000/token", { headers });
-
-        // Proses respons dan set state seperti yang Anda lakukan sebelumnya
-        setToken(response.data.accessToken);
-        const decoded = jwtDecode(response.data.accessToken);
-        console.log(decoded);
-        const { name } = decoded;
-        setName(name);
-        setExpire(decoded.exp);
-      }
-    } catch (error) {
-      console.log(error); // Tambahkan ini untuk melihat detail kesalahan
-      if (error.response) {
-        navigate("/");
-      }
-    }
-  };
-
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
+    window.addEventListener("scroll", changeBackgroundColor);
 
     if (storedToken) {
-      refreshToken();
+      setToken(storedToken);
+      axios
+        .get("https://api.cek-udara.my.id/users", {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        })
+        .then((response) => {
+          setName(response.data.name); // Modify this based on your user data structure
+        })
+        .catch((error) => {
+          console.error("Error fetching user data:", error);
+        });
     }
-
-    window.addEventListener("scroll", changeBackgroundColor);
 
     return () => {
       window.removeEventListener("scroll", changeBackgroundColor);
     };
-  }, [refreshToken, changeBackgroundColor]);
+  }, [changeBackgroundColor]);
 
   const logout = async () => {
     try {
       await axios.delete("http://localhost:5000/logout");
-      localStorage.removeItem("token"); // Hapus token dari local storage
-      setToken("");
-      setName(""); // Atur state nama pengguna menjadi kosong
+      localStorage.removeItem("token");
       navigate("/");
     } catch (error) {
       console.error("Error logging out:", error);
     }
   };
-
-  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const handleLoginClick = () => {
     setShowLoginModal(true);
@@ -87,13 +63,24 @@ const NavbarComponent = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/login", {
+      const response = await axios.post("https://api.cek-udara.my.id/login", {
         email: email,
         password: password,
       });
-      localStorage.setItem("token", response.data.accessToken);
-      refreshToken();
-      setShowLoginModal(false);
+
+      if (response.status === 200 && response.data.msg === "Login Berhasil") {
+        const userDataResponse = await axios.get("https://api.cek-udara.my.id/users", {
+          headers: {
+            Authorization: `Bearer ${response.data.accessToken}`,
+          },
+        });
+        setName(userDataResponse.data.name); // Modify this based on your user data structure
+        setToken(response.data.accessToken);
+        localStorage.setItem("token", response.data.accessToken);
+        navigate("/");
+      } else {
+        setMsg("Login gagal. Harap periksa kredensial Anda.");
+      }
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);
@@ -122,7 +109,7 @@ const NavbarComponent = () => {
             <div className="d-flex gap-2 text-center">
               {token ? (
                 <button onClick={logout} className="btn btn-success">
-                  Hi {name} <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                  Logout {name && <span>{name}</span>} <i className="fa-solid fa-arrow-right-from-bracket"></i>
                 </button>
               ) : (
                 <React.Fragment>

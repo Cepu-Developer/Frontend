@@ -16,18 +16,35 @@ const Login = ({ setLoginData, handleLogin }) => {
   const Auth = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/login", {
+      const response = await axios.post("https://api.cek-udara.my.id/login", {
         email: email,
         password: password,
       });
-      navigate("/");
-      localStorage.setItem("token", response.data.accessToken); // Simpan token di local storage
-      setLoginData(response.data.accessToken); // Set state token jika diperlukan di komponen login
+
+      if (response.data.msg === "Login Berhasil") {
+        // Ambil informasi pengguna dari server jika diperlukan
+        const userDataResponse = await axios.get("https://api.cek-udara.my.id/users", {
+          headers: {
+            Authorization: `Bearer ${response.data.accessToken}`, // Sertakan token pada header untuk otentikasi
+          },
+        });
+        setLoginData(userDataResponse.data);
+
+        // Setelah login berhasil, Anda bisa menyimpan token di local storage jika diperlukan
+        localStorage.setItem("token", response.data.accessToken);
+      } else {
+        setMsg("Login gagal. Harap periksa kredensial Anda.");
+        return; // Stop execution if login fails
+      }
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);
       }
+      return; // Stop execution on error
     }
+
+    // Redirect to the dashboard after successful login
+    navigate("/dashboard");
   };
 
   return (

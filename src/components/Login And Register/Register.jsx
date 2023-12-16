@@ -19,11 +19,11 @@ const Register = ({ setLoginData }) => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/users", {
-        name: name,
-        email: email,
-        password: password,
-        confPassword: confPassword,
+      await axios.post("https://api.cek-udara.my.id/register", {
+        name,
+        email,
+        password,
+        confPassword,
       });
       navigate("/login");
     } catch (error) {
@@ -50,8 +50,6 @@ const Register = ({ setLoginData }) => {
         <Col>
           <div>
             <div className="login-container" style={{ padding: "40px", display: "flex", flexDirection: "column" }}>
-              {" "}
-              {/* Tambahkan padding ke login-container */}
               <Link to="/" className="text-success text-decoration-none">
                 <span className="me-2">
                   <i className="fa-solid fa-arrow-left"></i>
@@ -66,71 +64,24 @@ const Register = ({ setLoginData }) => {
 
                 <form onSubmit={handleRegister} method="" action="">
                   <p className="has-text-centered">{msg}</p>
-                  <div className="mb-3">
-                    <div className="input-group">
-                      <span className="input-group-text">
-                        <i className="fa-regular fa-user"></i>
-                      </span>
-                      <input type="text" className="form-control" id="nama" placeholder="Nama" value={name} onChange={(e) => setName(e.target.value)} required onFocus={() => setNamaFocus(true)} onBlur={() => setNamaFocus(false)} />
+                  {["Nama", "Alamat Email", "Kata Sandi", "Ulangi Kata Sandi"].map((label, index) => (
+                    <div key={index} className="mb-3">
+                      <div className="input-group">
+                        <span className="input-group-text">{index === 0 ? <i className="fa-regular fa-user"></i> : index === 1 ? <i className="fa-regular fa-envelope"></i> : <i className="fa-solid fa-key"></i>}</span>
+                        <input
+                          type={index > 1 ? "password" : "text"}
+                          className="form-control"
+                          id={`input${label.split(" ").join("")}`}
+                          placeholder={label}
+                          value={index === 0 ? name : index === 1 ? email : index === 2 ? password : confPassword}
+                          onChange={(e) => (index === 0 ? setName(e.target.value) : index === 1 ? setEmail(e.target.value) : index === 2 ? setPassword(e.target.value) : setConfPassword(e.target.value))}
+                          required
+                          onFocus={() => (index === 0 ? setNamaFocus(true) : index === 1 ? setEmailFocus(true) : setPasswordFocus(true))}
+                          onBlur={() => (index === 0 ? setNamaFocus(false) : index === 1 ? setEmailFocus(false) : setPasswordFocus(false))}
+                        />
+                      </div>
                     </div>
-                  </div>
-
-                  <div className="mb-3">
-                    <div className="input-group">
-                      <span className="input-group-text">
-                        <i className="fa-regular fa-envelope"></i>
-                      </span>
-                      <input
-                        type="email"
-                        className="form-control"
-                        id="inputEmail"
-                        placeholder="Alamat Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        onFocus={() => setEmailFocus(true)}
-                        onBlur={() => setEmailFocus(false)}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="mb-3">
-                    <div className="input-group">
-                      <span className="input-group-text">
-                        <i className="fa-solid fa-key"></i>
-                      </span>
-                      <input
-                        type="password"
-                        className="form-control"
-                        id="inputPassword"
-                        placeholder="Kata Sandi"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        onFocus={() => setPasswordFocus(true)}
-                        onBlur={() => setPasswordFocus(false)}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="mb-3">
-                    <div className="input-group">
-                      <span className="input-group-text">
-                        <i className="fa-solid fa-key"></i>
-                      </span>
-                      <input
-                        type="password"
-                        className="form-control"
-                        id="inputPassword"
-                        placeholder="Ulangi Kata Sandi"
-                        value={confPassword}
-                        onChange={(e) => setConfPassword(e.target.value)}
-                        required
-                        onFocus={() => setPasswordFocus(true)}
-                        onBlur={() => setPasswordFocus(false)}
-                      />
-                    </div>
-                  </div>
+                  ))}
 
                   <div className="text-end">
                     <button type="submit" style={{ width: "20%" }} className="button btn btn-success fw-bold">
@@ -140,9 +91,9 @@ const Register = ({ setLoginData }) => {
 
                   <p className="mt-3 text-center">
                     Sudah punya akun?{" "}
-                    <a className="text-success text-decoration-none fw-bold" href="/Login">
+                    <Link className="text-success text-decoration-none fw-bold" to="/login">
                       Masuk
-                    </a>
+                    </Link>
                   </p>
                 </form>
               </div>
