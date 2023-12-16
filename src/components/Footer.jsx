@@ -41,11 +41,11 @@ const Footer = () => {
             <div className="col-4">
               <h5>Tim</h5>
               <ul className="list-unstyled">
-                <li className="mb-2"><a href="" target="_blank" rel="noopener noreferrer">Aria Putra Pratama</a></li>
-                <li className="mb-2"><a href="" target="_blank" rel="noopener noreferrer">Gilang Riyanto</a></li>
-                <li className="mb-2"><a href="" target="_blank" rel="noopener noreferrer">Muhammad Ariyansyah</a></li>
-                <li className="mb-2"><a href="" target="_blank" rel="noopener noreferrer">Dinda Rosalin Husna</a></li>
-                <li className="mb-2"><a href="" target="_blank" rel="noopener noreferrer">Dwi Wahyu Riani</a></li>
+                <li className="mb-2"><a href="https://id.linkedin.com/in/aria-putra-pratama-209482283" target="_blank" rel="noopener noreferrer">Aria Putra Pratama</a></li>
+                <li className="mb-2"><a href="https://www.linkedin.com/in/gilangriyanto/" target="_blank" rel="noopener noreferrer">Gilang Riyanto</a></li>
+                <li className="mb-2"><a href="https://www.linkedin.com/in/m-ariansyah" target="_blank" rel="noopener noreferrer">Muhammad Ariyansyah</a></li>
+                <li className="mb-2"><a href="http://www.linkedin.com/in/dindarosalin" target="_blank" rel="noopener noreferrer">Dinda Rosalin Husna</a></li>
+                <li className="mb-2"><a href="http://www.linkedin.com/in/yannriani" target="_blank" rel="noopener noreferrer">Dwi Wahyu Riani</a></li>
               </ul>
             </div>
           </div>
