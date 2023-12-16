@@ -116,6 +116,7 @@ const Login = ({ setToken, setName }) => {
 
         <Col className="bg-white min-vh-100 d-flex">
           <div className="text-center p-5" style={{ marginTop: "25%" }}>
+            <img src="/logo-text-green.png" alt="Logo" height="80" />
             <br />
             <span>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat similique quibusdam vel asperiores sit. Neque blanditiis doloremque atque voluptatibus architecto, itaque, aliquid, esse deserunt dignissimos eum consequuntur

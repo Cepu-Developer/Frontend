@@ -144,7 +144,7 @@ const NavbarComponent = () => {
           <div className="login-container" style={{ padding: "40px", display: "flex", flexDirection: "column" }}>
             <div className="px-5">
               <div className="text-center">
-                <img src="./src/assets/img/Logo/logo-text-green.png" alt="Logo" height="80" />
+                <img src="/logo-text-green.png" alt="Logo" height="80" />
                 <h2 className="py-2">Selamat Datang</h2>
               </div>
               <form onSubmit={handleLogin} method="" action="">

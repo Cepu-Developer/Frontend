@@ -58,7 +58,7 @@ const Register = ({ setLoginData }) => {
               </Link>
               <div className="justify-content-center">
                 <div className="text-center">
-                  <img src="./src/assets/img/Logo/logo-text-green.png" alt="Logo" height="80" />
+                  <img src="/logo-text-green.png" alt="Logo" height="80" />
                   <h2 className="mt-2">Selamat Datang</h2>
                 </div>
 
