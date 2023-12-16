@@ -1,0 +1,3 @@
+[build]
+  base = "client"  # "client" adalah contoh nama direktori utama anda
+  command = "npm run build"  # Gantikan dengan skrip pembinaan React anda

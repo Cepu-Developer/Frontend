@@ -134,7 +134,6 @@ const NavbarComponent = () => {
                   </Link>
                 </React.Fragment>
               )}
-              {token}
             </div>
           </Navbar.Collapse>
         </Container>
