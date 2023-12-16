@@ -21,3 +21,8 @@ strong {
 .ifa {
     color: white;
 }
+
+.img-profile {
+    max-width: 50px;
+    max-height: 50px;
+}

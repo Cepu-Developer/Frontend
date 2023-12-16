@@ -18,7 +18,7 @@ const HomePage = () => {
   return (
     <div className="homepage">
       <NavbarComponent />
-      <div className="container py-lg-5 pt-0 text-center">
+      <div className="container py-lg-5 pt-0">
         <Container>
           {isLoading ? (
             <Loading isLoading />
@@ -53,7 +53,7 @@ const HomePage = () => {
                         <Col className=" text-left d-flex justify-content-left text-align-left ">
                            <div className="text-left">
                           <h1 className="display-40 fw-bold fs-2">
-                          Hasil Cek Kualitas Udara di Lokasi Anda
+                          <strong>Hasil </strong>Cek Kualitas Udara di Lokasi Anda
                           </h1>
                           <p className="mt-4 lead text-left d-flex justify-content-left fs-5">
                           Terima kasih telah menggunakan layanan kami untuk memantau kualitas udara di sekitar Anda. Berikut adalah hasil terkini untuk lokasi Anda. 
@@ -95,14 +95,14 @@ const HomePage = () => {
         <hr />
 
         {/* Bagian Diskusi */}
-        <div className="my-5 justify-content-center">
-          <h3 className="text-center fw-bold">Diskusi Populer</h3>
+        <div className="my-5 justify-content-start">
+          <h3 className="text-center fw-bold"><strong>Diskusi</strong> Populer</h3>
           <p className="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
           <Row>
             {/* Kartu Diskusi */}
             <div className="col-lg-8 col-12 mb-3">
               <Card className="border-0">
-                <Card.Body style={{ overflow: "auto", height: "500px" }}>
+                <Card.Body style={{ overflow: "auto", height: "20em" }}>
                   <CardDiskusi />
                   <CardDiskusi />
                   <CardDiskusi />
