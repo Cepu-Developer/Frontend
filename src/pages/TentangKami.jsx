@@ -4,6 +4,15 @@ import NavbarComponent from "../components/Navbar"
 
 const developers = [
   {
+    name: 'Muhammad Ariansyah',
+    role: 'Back-end Developer',
+    description: 'Mahasiswa Sistem Informasi Universitas Malikussaleh',
+    image: 'public/profile/ari.jpeg',
+    linkedin: 'https://www.linkedin.com/in/m-ariansyah',
+    github: 'https://github.com/AriiAnn',
+    email: 'https://wa.me/6285156820186'
+  },
+  {
     name: 'Aria Putra Pratama',
     role: 'Front-end Developer',
     description: 'Mahasiswa Sistem Informasi Universitas Malikussaleh',
@@ -22,17 +31,8 @@ const developers = [
     email: 'https://wa.me/6281336353371'
   },
   {
-    name: 'Muhammad Ariansyah',
-    role: 'Back-end Developer',
-    description: 'Mahasiswa Sistem Informasi Universitas Malikussaleh',
-    image: 'public/profile/ari.jpeg',
-    linkedin: 'https://www.linkedin.com/in/m-ariansyah',
-    github: 'https://github.com/AriiAnn',
-    email: 'https://wa.me/6285156820186'
-  },
-  {
     name: 'Dinda Rosalin Husna',
-    role: 'UI/UX Designer',
+    role: 'Front-end Developer',
     description: 'Mahasiswa Teknologi Rekayasa Perangkat Lunak Politeknik Negeri Banyuwangi',
     image: 'public/profile/dinda.jpg',
     linkedin: 'http://www.linkedin.com/in/dindarosalin',
