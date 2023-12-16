@@ -58,7 +58,7 @@ const Login = ({ setToken, setName }) => {
               </Link>
               <div className="justify-content-center">
                 <div className="text-center">
-                  <img src="./src/assets/img/Logo/logo-text-green.png" alt="Logo" height="80" />
+                  <img src="/logo-text-green.png" alt="Logo" height="80" />
                   <h2 className="mt-2">Selamat Datang</h2>
                 </div>
                 <form onSubmit={Auth} method="" action="">
@@ -96,14 +96,6 @@ const Login = ({ setToken, setName }) => {
                       />
                     </div>
                   </div>
-
-                  <div className="mb-3 form-check">
-                    <input type="checkbox" className="form-check-input" id="rememberMe" />
-                    <label className="form-check-label" htmlFor="rememberMe">
-                      Remember me
-                    </label>
-                  </div>
-
                   <div className="text-end">
                     <button type="submit" style={{ width: "20%" }} className="btn btn-success fw-bold" onClick={Auth}>
                       Masuk

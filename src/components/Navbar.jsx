@@ -182,14 +182,6 @@ const NavbarComponent = () => {
                     />
                   </div>
                 </div>
-
-                <div className="mb-3 form-check">
-                  <input type="checkbox" className="form-check-input" id="rememberMe" />
-                  <label className="form-check-label" htmlFor="rememberMe">
-                    Remember me
-                  </label>
-                </div>
-
                 <div className="text-end">
                   <button type="submit" style={{ width: "20%" }} className="btn btn-success fw-bold" onClick={handleLogin}>
                     Masuk
