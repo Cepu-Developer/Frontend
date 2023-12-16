@@ -6,7 +6,7 @@ const Footer = () => {
           <div className="row m-4">
             <div className="col">
               <a className="d-inline-flex align-items-center mb-2 text-body-emphasis text-decoration-none" href="/" aria-label="Bootstrap">
-                <img className="img-fluid" src="./src/assets/img/Logo/logo-text-green.png" alt="Logo" />
+                <img className="img-fluid" src="/logo-text-green.png" alt="Logo" />
                 <span className="fs-5"></span>
               </a>
               <ul className="list-unstyled small">

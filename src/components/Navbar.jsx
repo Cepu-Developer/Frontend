@@ -99,9 +99,9 @@ const NavbarComponent = () => {
         style={{ backgroundColor: "white", borderBottom: "2px solid #e0e0e0" }}
       >
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="/">
             <img
-              src="./src/assets/img/Logo/logo-text-green.png"
+              src="/logo-text-green.png"
               width="100%"
               height="50px"
               className="d-inline-block align-top"

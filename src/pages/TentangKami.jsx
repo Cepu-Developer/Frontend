@@ -7,7 +7,7 @@ const developers = [
     name: 'Muhammad Ariansyah',
     role: 'Back-end Developer',
     description: 'Mahasiswa Sistem Informasi Universitas Malikussaleh',
-    image: 'public/profile/ari.jpeg',
+    image: '/profile/ari.jpeg',
     linkedin: 'https://www.linkedin.com/in/m-ariansyah',
     github: 'https://github.com/AriiAnn',
     email: 'https://wa.me/6285156820186'
@@ -16,7 +16,7 @@ const developers = [
     name: 'Aria Putra Pratama',
     role: 'Front-end Developer',
     description: 'Mahasiswa Sistem Informasi Universitas Malikussaleh',
-    image: 'public/profile/aria.jpeg',
+    image: '/profile/aria.jpeg',
     linkedin: 'https://id.linkedin.com/in/aria-putra-pratama-209482283',
     github: 'https://github.com/ARIA260702',
     email: 'https://wa.me/6282283135932'
@@ -25,7 +25,7 @@ const developers = [
     name: 'Gilang Riyanto',
     role: 'Front-end Developer',
     description: 'Mahasiswa Teknik Informatika Institut Teknologi Telkom Purwokerto',
-    image: 'public/profile/gilang.jpeg',
+    image: '/profile/gilang.jpeg',
     linkedin: 'https://www.linkedin.com/in/gilangriyanto/',
     github: 'https://github.com/gilangriyanto',
     email: 'https://wa.me/6281336353371'
@@ -34,7 +34,7 @@ const developers = [
     name: 'Dinda Rosalin Husna',
     role: 'Front-end Developer',
     description: 'Mahasiswa Teknologi Rekayasa Perangkat Lunak Politeknik Negeri Banyuwangi',
-    image: 'public/profile/dinda.jpg',
+    image: '/profile/dinda.jpg',
     linkedin: 'http://www.linkedin.com/in/dindarosalin',
     github: 'https://github.com/dindarosalin',
     email: 'dindarosalin24@gmail.com'
@@ -43,7 +43,7 @@ const developers = [
     name: 'Dwi Wahyu Riani',
     role: 'Project Manager',
     description: 'Mahasiswa Sistem Telekomunikasi Universitas Pendidikan Indonesia',
-    image: 'public/profile/riani.JPG',
+    image: '/profile/riani.JPG',
     linkedin: 'http://www.linkedin.com/in/yannriani',
     github: 'https://github.com/yannriani',
     email: 'https://wa.me/6288802984592'
