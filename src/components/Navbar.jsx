@@ -1,6 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 import React, { useState, useEffect, useCallback } from "react";
 import { Navbar, Container, Nav, Modal } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
@@ -15,7 +13,9 @@ const NavbarComponent = () => {
   const [msg, setMsg] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const changeBackgroundColor = useCallback(() => {
     setChangeColor(window.scrollY > 10);
@@ -27,18 +27,8 @@ const NavbarComponent = () => {
 
     if (storedToken) {
       setToken(storedToken);
-      axios
-        .get("https://api.cek-udara.my.id/users", {
-          headers: {
-            Authorization: `Bearer ${storedToken}`,
-          },
-        })
-        .then((response) => {
-          setName(response.data.name); // Modify this based on your user data structure
-        })
-        .catch((error) => {
-          console.error("Error fetching user data:", error);
-        });
+      fetchUserData(storedToken);
+      setIsLoggedIn(true);
     }
 
     return () => {
@@ -46,54 +36,77 @@ const NavbarComponent = () => {
     };
   }, [changeBackgroundColor]);
 
-  const logout = async () => {
+  const fetchUserData = async (token) => {
     try {
-      await axios.delete("http://localhost:5000/logout");
-      localStorage.removeItem("token");
-      navigate("/");
+      const response = await axios.get("https://api.cek-udara.my.id/users", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setName(response.data.name);
     } catch (error) {
-      console.error("Error logging out:", error);
+      console.error("Error fetching user data:", error);
     }
-  };
+  };  
 
-  const handleLoginClick = () => {
+  const handleLoginButtonClick = () => {
     setShowLoginModal(true);
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await axios.post("https://api.cek-udara.my.id/login", {
-        email: email,
-        password: password,
+      const response = await fetch("https://api.cek-udara.my.id/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
       });
 
-      if (response.status === 200 && response.data.msg === "Login Berhasil") {
-        const userDataResponse = await axios.get("https://api.cek-udara.my.id/users", {
-          headers: {
-            Authorization: `Bearer ${response.data.accessToken}`,
-          },
-        });
-        setName(userDataResponse.data.name); // Modify this based on your user data structure
-        setToken(response.data.accessToken);
-        localStorage.setItem("token", response.data.accessToken);
-        navigate("/");
+      if (response.ok) {
+        const data = await response.json();
+        const newToken = data.token;
+
+        localStorage.setItem("token", newToken);
+        setToken(newToken);
+        setIsLoggedIn(true);
+        setShowLoginModal(false);
+        fetchUserData(newToken);
       } else {
-        setMsg("Login gagal. Harap periksa kredensial Anda.");
+        setMsg("Authentication failed. Please check your credentials.");
       }
     } catch (error) {
-      if (error.response) {
-        setMsg(error.response.data.msg);
-      }
+      console.error("Error during authentication:", error);
+      setMsg("An error occurred during authentication.");
     }
+  };
+
+  const handleLogoutClick = () => {
+    setToken("");
+    localStorage.removeItem("token");
+    setName("");
+    setIsLoggedIn(false);
+    navigate("/");
   };
 
   return (
     <div>
-      <Navbar expand="lg" className={changeColor ? "color-active fixed-top" : ""} style={{ backgroundColor: "white", borderBottom: "2px solid #e0e0e0" }}>
+      <Navbar
+        expand="lg"
+        className={changeColor ? "color-active fixed-top" : ""}
+        style={{ backgroundColor: "white", borderBottom: "2px solid #e0e0e0" }}
+      >
         <Container>
           <Navbar.Brand href="#home">
-            <img src="./src/assets/img/Logo/logo-text-green.png" width="100%" height="50px" className="d-inline-block align-top" alt="Cek Udara" />
+            <img
+              src="./src/assets/img/Logo/logo-text-green.png"
+              width="100%"
+              height="50px"
+              className="d-inline-block align-top"
+              alt="Cek Udara"
+            />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -107,13 +120,13 @@ const NavbarComponent = () => {
               ))}
             </Nav>
             <div className="d-flex gap-2 text-center">
-              {token ? (
-                <button onClick={logout} className="btn btn-success">
+              {isLoggedIn ? (
+                <button onClick={handleLogoutClick} className="btn btn-success">
                   Logout {name && <span>{name}</span>} <i className="fa-solid fa-arrow-right-from-bracket"></i>
                 </button>
               ) : (
                 <React.Fragment>
-                  <button className="btn btn-success" onClick={handleLoginClick}>
+                  <button className="btn btn-success" onClick={handleLoginButtonClick}>
                     Masuk
                   </button>
                   <Link to="/Register" className="btn btn-outline-success">
@@ -134,7 +147,6 @@ const NavbarComponent = () => {
                 <img src="./src/assets/img/Logo/logo-text-green.png" alt="Logo" height="80" />
                 <h2 className="py-2">Selamat Datang</h2>
               </div>
-
               <form onSubmit={handleLogin} method="" action="">
                 <p className="has-text-centered">{msg}</p>
                 <div className="mb-3">
@@ -150,8 +162,6 @@ const NavbarComponent = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      onFocus={() => setEmailFocus(true)}
-                      onBlur={() => setEmailFocus(false)}
                     />
                   </div>
                 </div>
@@ -169,8 +179,6 @@ const NavbarComponent = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
-                      onFocus={() => setPasswordFocus(true)}
-                      onBlur={() => setPasswordFocus(false)}
                     />
                   </div>
                 </div>
