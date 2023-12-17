@@ -1,4 +1,4 @@
-import { Card, Row, Form, Button } from "react-bootstrap";
+import { Card, Row, } from "react-bootstrap";
 import Footer from "../components/Footer";
 import NavbarComponent from "../components/Navbar";
 import CardDiskusi from "../components/Homepage/CardDiskusi";
@@ -16,20 +16,16 @@ function Diskusi() {
           </p>
           <Row>
             {/* Kartu Diskusi */}
-            <div className="col-lg-8 col-12 mb-3">
+            <div className="col-lg-12 col-12 mb-3">
               <Card className="border-0 ">
                 <Card.Body style={{ overflow: "auto", height: "500px" }}>
-                  <CardDiskusi />
-                  <CardDiskusi />
-                  <CardDiskusi />
-                  <CardDiskusi />
                   <CardDiskusi />
                   <CardDiskusi />
                 </Card.Body>
               </Card>
             </div>
             {/* Form untuk Posting */}
-            <div className="col-lg-4 col-12">
+            {/* <div className="col-lg-4 col-12">
               <Card className="border-0">
                 <Card.Body >
                   <Form> 
@@ -51,7 +47,7 @@ function Diskusi() {
                   </Form>
                 </Card.Body>
               </Card>
-            </div>
+            </div> */}
           </Row>
         </div>
         {/* <CardDiskusi /> */}
