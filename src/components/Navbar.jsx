@@ -38,7 +38,7 @@ const NavbarComponent = () => {
 
   const fetchUserData = async (token) => {
     try {
-      const response = await axios.get("http://localhost:3000/users", {
+      const response = await axios.get("https://api.cek-udara.my.id/users", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -47,7 +47,7 @@ const NavbarComponent = () => {
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
-  };  
+  };
 
   const handleLoginButtonClick = () => {
     setShowLoginModal(true);
@@ -57,7 +57,7 @@ const NavbarComponent = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/login", {
+      const response = await fetch("https://api.cek-udara.my.id/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -93,20 +93,10 @@ const NavbarComponent = () => {
 
   return (
     <div>
-      <Navbar
-        expand="lg"
-        className={changeColor ? "color-active fixed-top" : ""}
-        style={{ backgroundColor: "white", borderBottom: "2px solid #e0e0e0" }}
-      >
+      <Navbar expand="lg" className={changeColor ? "color-active fixed-top" : ""} style={{ backgroundColor: "white", borderBottom: "2px solid #e0e0e0" }}>
         <Container>
           <Navbar.Brand href="/">
-            <img
-              src="/logo-text-green.png"
-              width="100%"
-              height="50px"
-              className="d-inline-block align-top"
-              alt="Cek Udara"
-            />
+            <img src="/logo-text-green.png" width="100%" height="50px" className="d-inline-block align-top" alt="Cek Udara" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -154,15 +144,7 @@ const NavbarComponent = () => {
                     <span className="input-group-text">
                       <i className="fa-regular fa-envelope"></i>
                     </span>
-                    <input
-                      type="email"
-                      className="form-control"
-                      id="inputEmail"
-                      placeholder="Alamat Email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
+                    <input type="email" className="form-control" id="inputEmail" placeholder="Alamat Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                   </div>
                 </div>
 
@@ -171,15 +153,7 @@ const NavbarComponent = () => {
                     <span className="input-group-text">
                       <i className="fa-solid fa-key"></i>
                     </span>
-                    <input
-                      type="password"
-                      className="form-control"
-                      id="inputPassword"
-                      placeholder="Kata Sandi"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
+                    <input type="password" className="form-control" id="inputPassword" placeholder="Kata Sandi" value={password} onChange={(e) => setPassword(e.target.value)} required />
                   </div>
                 </div>
                 <div className="text-end">

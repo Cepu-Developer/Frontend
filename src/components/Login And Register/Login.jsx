@@ -6,9 +6,9 @@ import { useState } from "react";
 import axios from "axios";
 
 const Login = ({ setToken, setName }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [msg, setMsg] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
   const Auth = async (e) => {
@@ -16,10 +16,10 @@ const Login = ({ setToken, setName }) => {
 
     // Make an API request to authenticate the user
     try {
-      const response = await fetch('http://localhost:3000/login', {
-        method: 'POST',
+      const response = await fetch("https://api.cek-udara.my.id/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
       });
@@ -29,16 +29,16 @@ const Login = ({ setToken, setName }) => {
         const token = data.token;
 
         // Store the token (you may want to use more secure methods)
-        localStorage.setItem('token', token);
+        localStorage.setItem("token", token);
 
         // Redirect to the home page
-        navigate('/');
+        navigate("/");
       } else {
-        setMsg('Authentication failed. Please check your credentials.');
+        setMsg("Authentication failed. Please check your credentials.");
       }
     } catch (error) {
-      console.error('Error during authentication:', error);
-      setMsg('An error occurred during authentication.');
+      console.error("Error during authentication:", error);
+      setMsg("An error occurred during authentication.");
     }
   };
 
@@ -68,15 +68,7 @@ const Login = ({ setToken, setName }) => {
                       <span className="input-group-text">
                         <i className="fa-regular fa-envelope"></i>
                       </span>
-                      <input
-                        type="email"
-                        className="form-control"
-                        id="inputEmail"
-                        placeholder="Alamat Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                      />
+                      <input type="email" className="form-control" id="inputEmail" placeholder="Alamat Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                     </div>
                   </div>
 
@@ -85,15 +77,7 @@ const Login = ({ setToken, setName }) => {
                       <span className="input-group-text">
                         <i className="fa-solid fa-key"></i>
                       </span>
-                      <input
-                        type="password"
-                        className="form-control"
-                        id="inputPassword"
-                        placeholder="Kata Sandi"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                      />
+                      <input type="password" className="form-control" id="inputPassword" placeholder="Kata Sandi" value={password} onChange={(e) => setPassword(e.target.value)} required />
                     </div>
                   </div>
                   <div className="text-end">
