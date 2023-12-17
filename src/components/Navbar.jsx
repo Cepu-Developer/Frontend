@@ -38,7 +38,7 @@ const NavbarComponent = () => {
 
   const fetchUserData = async (token) => {
     try {
-      const response = await axios.get("https://api.cek-udara.my.id/users", {
+      const response = await axios.get("http://localhost:3000/users", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -57,7 +57,7 @@ const NavbarComponent = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://api.cek-udara.my.id/login", {
+      const response = await fetch("http://localhost:3000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

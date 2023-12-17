@@ -19,7 +19,7 @@ const Register = ({ setLoginData }) => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://api.cek-udara.my.id/register", {
+      await axios.post("http://localhost:3000/register", {
         name,
         email,
         password,
